@@ -4,6 +4,7 @@ import socket
 import sys
 from _thread import *
 import ctypes
+import telnetlib
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   # AF_INET = connection type
 
@@ -13,7 +14,7 @@ host = ''
 port = 5555
 
 iptablelijst = ["145.89.157.66", "145.89.107.238", "145.89.104.76", "145.89.252.147", "192.168.178.29",
-                "145.89.254.155"]
+                "145.89.254.155", "145.89.118.72"]
 
 try:
     s.bind((host, port))
