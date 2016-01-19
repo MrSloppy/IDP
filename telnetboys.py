@@ -5,6 +5,13 @@ import sys
 from _thread import *
 import ctypes
 import telnetlib
+import subprocess
+import os
+
+#print(os.path.exists("C:/Program Files (x86)/VideoLAN/VLC/vlc.exe"))            # Dit checkt op VLC uberhaupt bestaat op de laptop
+#p = subprocess.Popen(["C:/Program Files (x86)/VideoLAN/VLC/vlc.exe", "C:\\Users\\Timo\\Downloads\\kek.webm"])   # Dit speelt de gekozen video af
+
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   # AF_INET = connection type
 
