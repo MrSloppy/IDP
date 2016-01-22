@@ -7,13 +7,36 @@ import ctypes
 import sqlite3
 import os
 import subprocess
+# Import smtplib for the actual sending function
+import smtplib
 
+# Prepare actual message
+
+def sendMail():
+    message = """\
+    From: %s
+    To: %s
+    Subject: %s
+
+    %s
+    """ % ("GoM - Gehandicapte ongevallen monitor", ", ".join("testwerknemer@gmail.com"), "!!NOODOPROEP!!", "Er is een noodoproep vanuit kamer: "+str(huisnummer))
+
+
+    # Send the message via our own SMTP server, but don't include the
+    # envelope header.
+    s = smtplib.SMTP_SSL('smtp.gmail.com:465')
+
+    s.login('rakesh.wmv@gmail.com', 'chickentikkamasala')
+    s.sendmail('rakesh.wmv@gmail.com', 'testwerknemer@gmail.com', message)
+    s.quit()
 
 
 db = sqlite3.connect('kamerdatabase.db')
 db.row_factory = lambda cursor, row: row[0]
 c = db.cursor()
 iplijst = '''SELECT ip_adres FROM woning'''
+huislijst = '''SELECT huisnummer FROM woning'''
+huis_nummer_lijst = c.execute(huislijst).fetchall()
 trusted_ip = c.execute(iplijst).fetchall()
 
 print(trusted_ip)
@@ -66,9 +89,14 @@ while True:
     data = conn.recv(2048)
     print('Connected to: '+addr[0]+':'+str(addr[1]))
     if addr[0] in trusted_ip:
+        for i in range(0, len(trusted_ip)):
+            if addr[0] == trusted_ip[i]:
+                huisnummer = huis_nummer_lijst[i]
+                print(huisnummer)
+                sendMail()
         print("Vertrouwde connectie")
         ctypes.windll.user32.MessageBoxW(0, "Er is een noodoproep gekomen vanaf ip: "+addr[0], "Noodoproep!", 1)        # Dit maakt een pop-up windows met de noodmelding en de lokactie van de melding
-        p = subprocess.Popen(["C:/Program Files (x86)/Mozilla Firefox/firefox.exe", "http://192.168.42.1:8082/"])
+        p = subprocess.Popen(["C:/Program Files (x86)/Mozilla Firefox/firefox.exe", "index.html"])
     else:
         conn.close()
 

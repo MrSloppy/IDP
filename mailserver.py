@@ -9,7 +9,7 @@ To: %s
 Subject: %s
 
 %s
-""" % ("Rakesh Patel", ", ".join("rybrugman@gmail.com"), "Welcome to Microsoft", "I just spam sir!!")
+""" % ("GoM - Gehandicapte ongevallen monitor", ", ".join("rybrugman@gmail.com"), "!!NOODOPROEP!!", "Er is een noodoproep vanuit kamer: "+kamernummer)
 
 
 # Send the message via our own SMTP server, but don't include the
