@@ -7,6 +7,7 @@ import ctypes
 import sqlite3
 import os
 import subprocess
+import requests
 # Import smtplib for the actual sending function
 import smtplib
 
@@ -96,7 +97,9 @@ while True:
                 sendMail()
         print("Vertrouwde connectie")
         ctypes.windll.user32.MessageBoxW(0, "Er is een noodoproep gekomen vanaf ip: "+addr[0], "Noodoproep!", 1)        # Dit maakt een pop-up windows met de noodmelding en de lokactie van de melding
-        p = subprocess.Popen(["C:/Program Files (x86)/Mozilla Firefox/firefox.exe", "index.html"])
+        r = requests.post("http://127.0.0.1:5000", data={"IP_addr": addr[0], "huisnummer": huisnummer})
+        print(r.status_code, r.reason)
+        print(r.text)
     else:
         conn.close()
 
