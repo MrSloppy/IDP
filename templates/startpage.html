@@ -15,8 +15,8 @@
         var meldingText = document.querySelectorAll('.melding-text')[0]
         socket.on('emergency', function(message) {
            data = message.data;
-           image.src = (data['IP_addr']) ? "http://cdn2.business2community.com/wp-content/uploads/2012/10/BLOG-Focus-image-300x300.jpg" : image.src;
-           meldingText.innerHTML = "<p>Er is een melding vanaf: "+data.IP_addr+" dit correspondeert met kamernummer: "+data.huisnummer+"<br>Er is mail verzonden naar de thuiszorg.</p>";
+           image.src = (data['IP_addr']) ? "http://192.168.42.1:8086/" : image.src;
+           meldingText.innerHTML = "<h2>Er is een melding vanaf: "+data.IP_addr+" dit correspondeert met kamernummer: "+data.huisnummer+"<br>Er is mail verzonden naar de thuiszorg.</h2>";
         });}
     </script>
 </head>
@@ -34,16 +34,16 @@
     <div class="container">
         <h2>Welkom bij het monitorings-systeem</h2>
 
-        <p>Hier verschijnen de meldingen</p>
+        <h3>Hier verschijnen de meldingen</h3>
 
         <div class="row">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img src="http://cam.shockthewolf.com/cam_pic.php/" alt="http://cam.shockthewolf.com/cam_pic.php/">
+                    <img src="http://i.imgur.com/5xo1FMH.jpg">
                 </div>
             </div>
             <div class="melding-text">
-                <p>Er zijn momenteel GEEN meldingen.</p>
+                <h2>Er zijn momenteel GEEN meldingen.</h2>
             </div>
         </div>
     </div>

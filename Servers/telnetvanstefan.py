@@ -99,7 +99,6 @@ while True:
         ctypes.windll.user32.MessageBoxW(0, "Er is een noodoproep gekomen vanaf ip: "+addr[0], "Noodoproep!", 1)        # Dit maakt een pop-up windows met de noodmelding en de lokactie van de melding
         r = requests.post("http://127.0.0.1:5000", data={"IP_addr": addr[0], "huisnummer": huisnummer})
         print(r.status_code, r.reason)
-        print(r.text)
     else:
         conn.close()
 
