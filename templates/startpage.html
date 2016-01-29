@@ -15,7 +15,7 @@
         var meldingText = document.querySelectorAll('.melding-text')[0]
         socket.on('emergency', function(message) {
            data = message.data;
-           image.src = (data['IP_addr']) ? "http://192.168.42.1:8086/" : image.src;
+           image.src = (data['IP_addr']) ? "http://145.89.159.18:8087/" : image.src;
            meldingText.innerHTML = "<h2>Er is een melding vanaf: "+data.IP_addr+" dit correspondeert met kamernummer: "+data.huisnummer+"<br>Er is mail verzonden naar de thuiszorg.</h2>";
         });}
     </script>
